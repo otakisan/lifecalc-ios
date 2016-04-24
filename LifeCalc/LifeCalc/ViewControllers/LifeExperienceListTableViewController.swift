@@ -39,6 +39,8 @@ class LifeExperienceListTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         self.reloadData()
         super.viewWillAppear(animated)
+        
+        self.initAnalysisTracker("LifeExperienceList")
     }
 
     // MARK: - Table view data source

@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class AdBannerViewController: UIViewController {
 
+    @IBOutlet weak var adBannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +23,14 @@ class AdBannerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.initAdBannerView()
+        
+        self.initAnalysisTracker("AdBanner")
+    }
 
     /*
     // MARK: - Navigation
@@ -32,4 +42,11 @@ class AdBannerViewController: UIViewController {
     }
     */
 
+    private func initAdBannerView(){
+        print("Google Mobile Ads SDK version: " + GADRequest.sdkVersion())
+        
+        self.adBannerView.rootViewController = self
+        let gadRequest = GADRequest()
+        self.adBannerView.loadRequest(gadRequest)
+    }
 }

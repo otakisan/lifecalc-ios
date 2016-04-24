@@ -32,6 +32,8 @@ class LifeExperienceSimpleCalculatorTableViewController: UITableViewController {
         self.reloadData()
         
         super.viewWillAppear(animated)
+        
+        self.initAnalysisTracker("LifeExperienceSimpleCalculator")
     }
     // MARK: - Table view data source
 
