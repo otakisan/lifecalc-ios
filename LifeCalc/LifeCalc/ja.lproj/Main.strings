@@ -1,0 +1,45 @@
+
+/* Class = "UILabel"; text = "EndsAt"; ObjectID = "0mh-co-wO3"; */
+"0mh-co-wO3.text" = "終了日時";
+
+/* Class = "UITextField"; placeholder = "what else ?"; ObjectID = "4PQ-9U-gcH"; */
+"4PQ-9U-gcH.placeholder" = "他に何かあれば入力してください";
+
+/* Class = "UIButton"; normalTitle = "AUG, 24, 8888, 88:88 PM (SUN)"; ObjectID = "GaT-Uk-Jdf"; */
+"GaT-Uk-Jdf.normalTitle" = "AUG, 24, 8888, 88:88 PM (SUN)";
+
+/* Class = "UILabel"; text = "Note"; ObjectID = "Hp7-rl-9qe"; */
+"Hp7-rl-9qe.text" = "メモ";
+
+/* Class = "UITextField"; placeholder = "what ?"; ObjectID = "OlP-X8-KOj"; */
+"OlP-X8-KOj.placeholder" = "行動内容を入力してください";
+
+/* Class = "UITextField"; placeholder = "where ?"; ObjectID = "Oun-0M-ZpZ"; */
+"Oun-0M-ZpZ.placeholder" = "場所を入力してください";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "RNR-7O-FyN"; */
+"RNR-7O-FyN.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "AUG, 23, 8888, 88:88 PM (SUN)"; ObjectID = "Zru-UF-YkK"; */
+"Zru-UF-YkK.normalTitle" = "AUG, 23, 8888, 88:88 PM (SUN)";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "baj-aI-P2Y"; */
+"baj-aI-P2Y.text" = "Title";
+
+/* Class = "UILabel"; text = "StartsAt"; ObjectID = "pa5-LD-cMH"; */
+"pa5-LD-cMH.text" = "開始日時";
+
+/* Class = "UIBarButtonItem"; title = "Calc"; ObjectID = "tXz-fu-cI4"; */
+"tXz-fu-cI4.title" = "計算";
+
+/* Class = "UILabel"; text = "Place"; ObjectID = "ter-kn-2A5"; */
+"ter-kn-2A5.text" = "場所";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "wbd-2x-OHx"; */
+"wbd-2x-OHx.text" = "Detail";
+
+/* Class = "UILabel"; text = "Action"; ObjectID = "znO-R2-0HG"; */
+"znO-R2-0HG.text" = "行動";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "zr2-VY-tPg"; */
+"zr2-VY-tPg.text" = "Subtitle";

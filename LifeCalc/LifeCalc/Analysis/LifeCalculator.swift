@@ -23,7 +23,7 @@ class LifeCalculator: NSObject {
                 return prev + Int(exp.endsAt.timeIntervalSinceDate(exp.startsAt))
             })
             
-            results.append((label : "Working (sec.)", content: "\(exps)"))
+            results.append((label : "\("Working".localized()) (\("sec.".localized()))", content: "\(exps)"))
         }
         
         return results

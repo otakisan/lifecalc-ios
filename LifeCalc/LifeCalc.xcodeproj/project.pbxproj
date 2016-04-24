@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		161E4AF31CCC970C0014F5A4 /* LifeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161E4AF21CCC970C0014F5A4 /* LifeCalculator.swift */; };
+		162442DA1CCCA96E00D86D64 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 162442DC1CCCA96E00D86D64 /* InfoPlist.strings */; };
+		162442E11CCCAB5A00D86D64 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 162442E31CCCAB5A00D86D64 /* Localizable.strings */; };
 		16393A201CCB9484005EACFC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16393A1E1CCB9484005EACFC /* Realm.framework */; };
 		16393A211CCB9484005EACFC /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 16393A1E1CCB9484005EACFC /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16393A221CCB9484005EACFC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16393A1F1CCB9484005EACFC /* RealmSwift.framework */; };
@@ -63,6 +65,11 @@
 
 /* Begin PBXFileReference section */
 		161E4AF21CCC970C0014F5A4 /* LifeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCalculator.swift; sourceTree = "<group>"; };
+		162442D71CCCA6F700D86D64 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		162442DD1CCCA97300D86D64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		162442DE1CCCA98900D86D64 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		162442E41CCCAB8100D86D64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		162442E51CCCAB8E00D86D64 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		16393A1E1CCB9484005EACFC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		16393A1F1CCB9484005EACFC /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		16393A271CCC3E00005EACFC /* LifeExperienceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeExperienceListTableViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +194,8 @@
 				164AF3F71CCB849700F3FCD1 /* Assets.xcassets */,
 				164AF3F91CCB849700F3FCD1 /* LaunchScreen.storyboard */,
 				164AF3FC1CCB849700F3FCD1 /* Info.plist */,
+				162442DC1CCCA96E00D86D64 /* InfoPlist.strings */,
+				162442E31CCCAB5A00D86D64 /* Localizable.strings */,
 			);
 			path = LifeCalc;
 			sourceTree = "<group>";
@@ -316,7 +325,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162442E11CCCAB5A00D86D64 /* Localizable.strings in Resources */,
 				164AF3FB1CCB849700F3FCD1 /* LaunchScreen.storyboard in Resources */,
+				162442DA1CCCA96E00D86D64 /* InfoPlist.strings in Resources */,
 				164AF3F81CCB849700F3FCD1 /* Assets.xcassets in Resources */,
 				164AF3F61CCB849700F3FCD1 /* Main.storyboard in Resources */,
 			);
@@ -407,10 +418,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		162442DC1CCCA96E00D86D64 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				162442DD1CCCA97300D86D64 /* Base */,
+				162442DE1CCCA98900D86D64 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		162442E31CCCAB5A00D86D64 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				162442E41CCCAB8100D86D64 /* Base */,
+				162442E51CCCAB8E00D86D64 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		164AF3F41CCB849700F3FCD1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				164AF3F51CCB849700F3FCD1 /* Base */,
+				162442D71CCCA6F700D86D64 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
