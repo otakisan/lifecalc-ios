@@ -56,7 +56,6 @@ class LifeCalculator: NSObject {
         let label = "\("Working".localized()) \("rate".localized()) (\("%".localized()))"
         let total = self.secondsCalcLifeExperienceOfTotal()
         let partialTime = self.secondsCalcLifeExperienceOfJob()
-        // 四捨五入の仕方が微妙ではあるが、暫定的に下記とする
         let rate = self.rateByRoundIn100Percent(partial: partialTime, total: total)
         
         return (label : label, content: "\(rate)")
@@ -67,7 +66,6 @@ class LifeCalculator: NSObject {
         let label = "\("Leisure".localized()) \("rate".localized()) (\("%".localized()))"
         let total = self.secondsCalcLifeExperienceOfTotal()
         let partialTime = self.secondsCalcLifeExperienceOfLeisure()
-        // 四捨五入の仕方が微妙ではあるが、暫定的に下記とする
         let rate = self.rateByRoundIn100Percent(partial: partialTime, total: total)
         
         return (label : label, content: "\(rate)")
@@ -78,7 +76,6 @@ class LifeCalculator: NSObject {
         let label = "\("Learning".localized()) \("rate".localized()) (\("%".localized()))"
         let total = self.secondsCalcLifeExperienceOfTotal()
         let partialTime = self.secondsCalcLifeExperienceOfLearning()
-        // 四捨五入の仕方が微妙ではあるが、暫定的に下記とする
         let rate = self.rateByRoundIn100Percent(partial: partialTime, total: total)
         
         return (label : label, content: "\(rate)")
@@ -104,47 +101,17 @@ class LifeCalculator: NSObject {
         
         return (label : label, content: "\(self.secondsCalcLifeExpectencyOfLearning(7))")
     }
-
+    
     private func secondsCalcLifeExperienceOfJob() -> Int {
-        
-        if let realm = try? Realm() {
-            let exps = realm.objects(LifeExperience).filter("action CONTAINS[c] %@ OR action CONTAINS[c] %@", "job".localized(), "work".localized()).reduce(0, combine: { (prev, exp) -> Int in
-                
-                return prev + Int(exp.endsAt.timeIntervalSinceDate(exp.startsAt))
-            })
-            
-            return exps
-        }
-        
-        return 0
+        return self.secondsCalcLifeExperience(self.filterWordsForJob())
     }
     
     private func secondsCalcLifeExperienceOfLeisure() -> Int {
-        
-        if let realm = try? Realm() {
-            let exps = realm.objects(LifeExperience).filter("action CONTAINS[c] %@ OR action CONTAINS[c] %@", "Leisure".localized(), "holiday".localized()).reduce(0, combine: { (prev, exp) -> Int in
-                
-                return prev + Int(exp.endsAt.timeIntervalSinceDate(exp.startsAt))
-            })
-            
-            return exps
-        }
-        
-        return 0
+        return self.secondsCalcLifeExperience(self.filterWordsForLeisure())
     }
     
     private func secondsCalcLifeExperienceOfLearning() -> Int {
-        
-        if let realm = try? Realm() {
-            let exps = realm.objects(LifeExperience).filter("action CONTAINS[c] %@ OR action CONTAINS[c] %@", "learn".localized(), "study".localized()).reduce(0, combine: { (prev, exp) -> Int in
-                
-                return prev + Int(exp.endsAt.timeIntervalSinceDate(exp.startsAt))
-            })
-            
-            return exps
-        }
-        
-        return 0
+        return self.secondsCalcLifeExperience(self.filterWordsForLearning())
     }
     
     private func secondsCalcLifeExpectencyOfJob(days : Int) -> Int {
@@ -176,6 +143,18 @@ class LifeCalculator: NSObject {
         return total == 0 ? 0 : Int((Double(partialTime) / Double(total)) * Double(secondsInAWeek))
     }
     
+    private func filterWordsForJob() -> [String] {
+        return ["job".localized(), "work".localized(), "task".localized(), "business".localized(), "duty".localized(), "report".localized(), "shift".localized(), "overtime".localized(), "part-time".localized()]
+    }
+    
+    private func filterWordsForLeisure() -> [String] {
+        return ["Leisure".localized(), "holiday".localized(), "play".localized(), "movie".localized(), "music".localized(), "drive".localized(), "walk".localized(), "sport".localized(), "food".localized(), "restaurants".localized(), "cafe".localized(), "rest".localized(), "drink".localized()]
+    }
+    
+    private func filterWordsForLearning() -> [String] {
+        return ["learn".localized(), "study".localized(), "test".localized(), "exam".localized(), "school".localized(), "cram".localized(), "research".localized()]
+    }
+    
     private func secondsCalcLifeExperienceOfTotal() -> Int {
         if let realm = try? Realm() {
             let exps = realm.objects(LifeExperience).reduce(0, combine: { (prev, exp) -> Int in
@@ -189,6 +168,30 @@ class LifeCalculator: NSObject {
         return 0
     }
     
+    private func secondsCalcLifeExperience(filterWords : [String]) -> Int {
+        
+        if let realm = try? Realm() {
+            
+            let exps = realm.objects(LifeExperience).filter(self.orPredicateForAction(filterWords))
+                .reduce(0, combine: { (prev, exp) -> Int in
+                    return prev + Int(exp.endsAt.timeIntervalSinceDate(exp.startsAt))
+                })
+            
+            return exps
+        }
+        
+        return 0
+    }
+    
+    private func orPredicateForAction(filterWords : [String]) -> NSPredicate {
+        var predicates : [NSPredicate] = []
+        for filterWord in filterWords {
+            predicates.append(NSPredicate(format: "action CONTAINS[c] %@", filterWord))
+        }
+        
+        return NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+    }
+    
     private func secondsActiveTime(days : Int) -> Int {
         let activeHoursPerDay = 18
         let activeSecondsPerDay = 3600 * activeHoursPerDay
@@ -196,6 +199,7 @@ class LifeCalculator: NSObject {
     }
     
     private func rateByRoundIn100Percent(partial partial : Int, total : Int) -> Double {
+        // 四捨五入の仕方が微妙ではあるが、暫定的に下記とする
         return total == 0 ? 0.0 : abs(round((Double(partial) / Double(total)) * 1000.0) / 10.0)
     }
 }
