@@ -12,6 +12,7 @@ import RealmSwift
 class LifeExperienceSimpleCalculatorTableViewController: UITableViewController {
 
     var calcResults : [(label : String, content : String)] = []
+    var sourceViewController : UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,26 @@ class LifeExperienceSimpleCalculatorTableViewController: UITableViewController {
         
         super.viewWillAppear(animated)
         
-        self.initAnalysisTracker("LifeExperienceSimpleCalculator")
+        self.initAnalysisTracker("体験計算（LifeExperienceSimpleCalculator）")
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        (self.sourceViewController as? LifeExperienceListTableViewController)?.isShowAd = true
+    }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        super.didMoveToParentViewController(parent)
+        
+        // 自分自身が最後尾なので、一階層前は、最後尾のひとつ前
+        if let count = parent?.childViewControllers.count where count > 1 {
+            self.sourceViewController = parent?.childViewControllers[count - 2]
+        } else {
+            self.sourceViewController = nil
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

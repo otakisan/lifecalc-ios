@@ -85,7 +85,7 @@ class LifeExperienceSimpleEditorViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.initAnalysisTracker("LifeExperienceSimpleEditor")
+        self.initAnalysisTracker("体験編集（LifeExperienceSimpleEditor）")
     }
     
     // MARK: - Navigation

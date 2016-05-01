@@ -8,10 +8,14 @@
 
 import UIKit
 import RealmSwift
+import GoogleMobileAds
 
 class LifeExperienceListTableViewController: UITableViewController {
     
     var lifeExperiences : [LifeExperience] = []
+    
+    var isShowAd = false
+    var interstitial : GADInterstitial?
 
     private func reloadData() {
         if let realm = try? Realm() {
@@ -29,6 +33,8 @@ class LifeExperienceListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.loadAd()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +46,9 @@ class LifeExperienceListTableViewController: UITableViewController {
         self.reloadData()
         super.viewWillAppear(animated)
         
-        self.initAnalysisTracker("LifeExperienceList")
+        self.initAnalysisTracker("体験一覧（LifeExperienceList）")
+        
+        self.showAd()
     }
 
     // MARK: - Table view data source
@@ -119,6 +127,37 @@ class LifeExperienceListTableViewController: UITableViewController {
             }
         }
     }
-    
 
+    @objc private func reloadAd() {
+        self.loadAd()
+    }
+    
+    private func loadAd() {
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3119454746977531/4906034805")
+        let gadRequest = GADRequest()
+        self.interstitial?.loadRequest(gadRequest)
+        self.interstitial?.delegate = self
+    }
+    
+    private func showAd() {
+        if self.isShowAd && self.interstitial!.isReady {
+            self.interstitial?.presentFromRootViewController(self)
+        }
+    }
+
+}
+
+extension LifeExperienceListTableViewController : GADInterstitialDelegate {
+    func interstitialDidDismissScreen(ad: GADInterstitial!){
+        self.loadAd()
+    }
+    
+    func interstitialWillPresentScreen(ad: GADInterstitial!) {
+        self.isShowAd = false
+    }
+    
+    func interstitial(ad: GADInterstitial!, didFailToReceiveAdWithError error: GADRequestError!){
+        print(error)
+        NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(LifeExperienceListTableViewController.reloadAd), userInfo: nil, repeats: true)
+    }
 }
