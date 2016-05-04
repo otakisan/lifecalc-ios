@@ -49,6 +49,17 @@ class LifeExperienceListTableViewController: UITableViewController {
         self.initAnalysisTracker("体験一覧（LifeExperienceList）")
         
         self.showAd()
+        
+        self.showInstructionIfNoData()
+    }
+    
+    private func showInstructionIfNoData() {
+        if let realm = try? Realm() {
+            if realm.objects(LifeExperience).count == 0 {
+                self.showAlertMessage("TitleForPromotingToRegister".localized(), message: "MessageForPromotingToRegister".localized()
+                    , okHandler: nil)
+            }
+        }
     }
 
     // MARK: - Table view data source

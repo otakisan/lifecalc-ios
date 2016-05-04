@@ -27,4 +27,10 @@ extension UIViewController {
         tracker.set(kGAIScreenName, value: screenName)
         tracker.send(GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject])
     }
+    
+    func showAlertMessage(title : String?, message : String?, okHandler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: okHandler))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 }

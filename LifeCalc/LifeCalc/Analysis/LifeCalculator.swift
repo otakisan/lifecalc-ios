@@ -143,15 +143,15 @@ class LifeCalculator: NSObject {
         return total == 0 ? 0 : Int((Double(partialTime) / Double(total)) * Double(secondsInAWeek))
     }
     
-    private func filterWordsForJob() -> [String] {
+    func filterWordsForJob() -> [String] {
         return ["job".localized(), "work".localized(), "task".localized(), "business".localized(), "duty".localized(), "report".localized(), "shift".localized(), "overtime".localized(), "part-time".localized()]
     }
     
-    private func filterWordsForLeisure() -> [String] {
+    func filterWordsForLeisure() -> [String] {
         return ["Leisure".localized(), "holiday".localized(), "play".localized(), "movie".localized(), "music".localized(), "drive".localized(), "walk".localized(), "sport".localized(), "food".localized(), "restaurants".localized(), "cafe".localized(), "rest".localized(), "drink".localized()]
     }
     
-    private func filterWordsForLearning() -> [String] {
+    func filterWordsForLearning() -> [String] {
         return ["learn".localized(), "study".localized(), "test".localized(), "exam".localized(), "school".localized(), "cram".localized(), "research".localized()]
     }
     

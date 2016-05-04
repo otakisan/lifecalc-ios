@@ -40,3 +40,10 @@
 "school" = "学校";
 "cram" = "塾";
 "research" = "調査";
+"keywordsBarButtonItemLabel" = "計算用キーワード";
+
+// Messages
+"TitleForPromotingToRegister" = "活動記録を登録しましょう！";
+"MessageForPromotingToRegister" = "右下の「＋」ボタンを押してください。 データを登録しましたら、「計算」ボタンを押してください。";
+"TitleForCategoryKeywords" = "分類キーワード";
+"MessageForCategoryKeywords" = "下記のキーワードを「行動」欄に入力していただけますと, そのキーワードで分類し、生活の傾向を計算します。";

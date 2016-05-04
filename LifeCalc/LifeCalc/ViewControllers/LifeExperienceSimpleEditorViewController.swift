@@ -71,6 +71,10 @@ class LifeExperienceSimpleEditorViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    func onTapKeywordsBarButtonItem(barButtonItem : UIBarButtonItem) {
+        self.showAlertMessage("TitleForCategoryKeywords".localized(), message: "\("MessageForCategoryKeywords".localized())\n\(self.keywordsExamples())", okHandler: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -120,6 +124,8 @@ class LifeExperienceSimpleEditorViewController: UIViewController {
         self.actionTextField.delegate = self
         self.placeTextField.delegate = self
         self.noteTextField.delegate = self
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "keywordsBarButtonItemLabel".localized(), style: .Plain, target: self, action: #selector(self.onTapKeywordsBarButtonItem(_:)))
     }
     
     private func localDatetimeAndDayOfTheWeekString(date : NSDate?) -> String {
@@ -130,6 +136,14 @@ class LifeExperienceSimpleEditorViewController: UIViewController {
         if self.lifeExperience?.realm == nil {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(self.onTapSaveButton))
         }
+    }
+    
+    private func keywordsExamples() -> String {
+        let job = "\("Working".localized()) : \(LifeCalculator.defaultCalculator.filterWordsForJob().joinWithSeparator(", "))"
+        let leisure = "\("Leisure".localized()) : \(LifeCalculator.defaultCalculator.filterWordsForLeisure().joinWithSeparator(", "))"
+        let learning = "\("Learning".localized()) : \(LifeCalculator.defaultCalculator.filterWordsForLearning().joinWithSeparator(", "))"
+        
+        return "\(job)\n\(leisure)\n\(learning)"
     }
 }
 

@@ -40,3 +40,10 @@
 "school" = "school";
 "cram" = "cram";
 "research" = "research";
+"keywordsBarButtonItemLabel" = "Keywords";
+
+// Messages
+"TitleForPromotingToRegister" = "Let's register your activity logs!";
+"MessageForPromotingToRegister" = "Please tap ' + ' button in the bottom right.\nAfter you register data, let's tap ' Calc ' button!";
+"TitleForCategoryKeywords" = "Category keywords";
+"MessageForCategoryKeywords" = "If you will input the following keywords into ' Action ' field, the app categorizes your activitity logs by the keywords and calculates your daily life.";
