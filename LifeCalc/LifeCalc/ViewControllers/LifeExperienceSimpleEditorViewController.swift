@@ -125,7 +125,7 @@ class LifeExperienceSimpleEditorViewController: UIViewController {
         self.placeTextField.delegate = self
         self.noteTextField.delegate = self
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "keywordsBarButtonItemLabel".localized(), style: .Plain, target: self, action: #selector(self.onTapKeywordsBarButtonItem(_:)))
+        self.toolbarItems = [UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "keywordsBarButtonItemLabel".localized(), style: .Plain, target: self, action: #selector(self.onTapKeywordsBarButtonItem(_:)))]
     }
     
     private func localDatetimeAndDayOfTheWeekString(date : NSDate?) -> String {
